@@ -1,7 +1,13 @@
 from django.shortcuts import render
+from .models import Project, Profile
+from django.http import HttpResponse
 
-# Create your views here.
 
 def index(request):
-    return render (request, 'index.html')
+    project = Project.objects.all()
+    params = {
+        'project':project,
+        
+    }
+    return render (request, 'index.html', params)
     

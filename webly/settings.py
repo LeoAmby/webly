@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bootstrap4',
+    'registe.apps.RegisterConfig',
     'sites.apps.SitesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
