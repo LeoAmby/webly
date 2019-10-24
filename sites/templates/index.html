@@ -1,4 +1,12 @@
 {%extends 'base.html'%}
 {%block content%}
 {{block.super}}
+
+<div class="container">
+
+    {%for project in projects %}
+     <div class="row">
+         <div class="col-xs col-sm-6 col-md-6 col-lg-6"></div>
+     </div>
+</div>
 {%endblock%}
