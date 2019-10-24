@@ -1,0 +1,22 @@
+nav {
+    background-color: rgb(235, 230, 230);
+    height:80px;
+    
+}
+
+nav li {
+    display: inline-block;
+}
+
+span {
+    background-color: yellow;
+    padding:20px;
+    color:black;
+    font-family: 'Turret Road', cursive;
+}
+
+.navbar-body {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3em;
+    font-weight: bold;
+}
