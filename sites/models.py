@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -13,10 +14,11 @@ class Project(models.Model):
 
 
 class Profile(models.Model):
-    image = models.ImageField(upload_to = 'images')
+    user = models.OneToOneField(User, default='', on_delete=models.CASCADE)
+    image = models.ImageField(default='default.jpg', upload_to = 'images')
     bio = models.TextField()
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     email = models.EmailField()
 
     def __str__(self):
-        return self.bio
+        return f'{self.user.username} Profile'

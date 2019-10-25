@@ -8,7 +8,7 @@ nav li {
     display: inline-block;
 }
 
-span {
+.submit{
     background-color: yellow;
     padding:20px;
     color:black;
@@ -19,4 +19,22 @@ span {
     font-family: 'Great Vibes', cursive;
     font-size: 3em;
     font-weight: bold;
+}
+
+#hint_id_password1 {
+    display:none;
+}
+
+#hint_id_username {
+    display:none;
+}
+#hint_id_password2 {
+    display:none;
+}
+
+textinput.id_username:before {
+    content: "username";
+}
+.asteriskField {
+    display: none;
 }

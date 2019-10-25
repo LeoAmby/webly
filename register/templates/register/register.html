@@ -2,11 +2,21 @@
 {%block title%}
 <h2>Register</h2>
 {%endblock%}
+{%load crispy_forms_tags%}
 
 {%block content%}
-<form method="POST" class="form-group">
-    {%csrf_token%}
-    {{form}}
-    <button type="submit" class="btn btn-success">REGISTER</button>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <p>Have an Account? <a href="/login">Login Here!</a></p>
+            <form method="POST" class="form-group">
+                {%csrf_token%}
+                {{form | crispy}}
+                <button type="submit" class="btn btn-success">REGISTER</button>
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
 {%endblock%}
