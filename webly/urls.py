@@ -20,11 +20,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 # from django.contrib.auth import views
 from register import views as auth_views
+from sites.views import ProjectListView, ProjectDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
+    path('', ProjectListView.as_view(), name='index'),
+    path('post/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
     path('register/', auth_views.register, name="register"),
+    path('profile', auth_views.profile, name="profile"),
     path('', include("django.contrib.auth.urls")),
 
 ]
