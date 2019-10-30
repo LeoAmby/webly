@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from .models import Project, Profile
 from django.http import HttpResponse
 
@@ -24,3 +24,8 @@ class ProjectListView(ListView):
 
 class ProjectDetailView(DetailView):
     model = Project
+
+
+class ProjectCreateView(CreateView):
+    model = Project
+    fields = ['title', 'photo', 'description', 'link']

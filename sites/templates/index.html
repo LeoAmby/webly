@@ -5,9 +5,19 @@
 <div class="container">
 
     {%for project in projects %}
-     <div class="row">
-         <div class="col-xs col-sm-6 col-md-6 col-lg-6"></div>
-     </div>
-     {%endfor%}
+    <div class="row">
+        <article class="media content-section">
+            <img class="rounded-circle article-img" src="{{project.user.profile.image}}">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">{{project.user}}</a>
+                    <small class="text-muted">{{project.date_posted|date:"F d, Y"}}</small>
+                </div>
+                <h2> <a class="article-title" href="{%url 'project-detail.html' project.id%}">{{project.link}}</a></h2>
+                <p class="article-content">{{project.description}}</p>
+            </div>
+        </article>
+    </div>
+    {%endfor%}
 </div>
 {%endblock%}
