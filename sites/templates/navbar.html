@@ -17,7 +17,9 @@
             </div>
             <div class="navbar-footer"> 
                 <a href="{%url 'login'%}">REGISTER | LOGIN</a>
+                {%if authenticated%}
                 <a href="{%url 'login'%}">PROFILE | LOGOUT</a>
+                {%endif%}
                 <span class="submit">SUBMIT YOUR SITE</span></div>
         </div>
         
