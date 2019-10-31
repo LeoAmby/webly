@@ -7,21 +7,26 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 def index(request):
-    context = {
-        'projects': Project.objects.all()
-    }
+    # context = {
+    #     'projects': Project.objects.all()
+    # }
+   
     # project = Project.objects.all()
     # params = {
     #     'project':project,
         
     # }
-    return render (request, 'index.html', context)
+    print('hbhedfhkdjhuhsufhrkjh')
+    projects =Project.objects.all()
+    print(projects)
+    return render (request, 'index.html', {'projects':projects})
     
 
 class ProjectListView(ListView):
     model = Project
     template_name = 'index.html'
     context_object_name = 'project'
+    # projects =Project.objects.all()
     ordering = ['-date_posted']
 
 class ProjectDetailView(DetailView):
