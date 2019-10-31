@@ -1,26 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView,  CreateView, UpdateView, DeleteView
 from .models import Project, Profile
 from django.http import HttpResponse
+from register.forms import ProjectForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin 
 
 
 
 def index(request):
-    # context = {
-    #     'projects': Project.objects.all()
-    # }
-   
-    # project = Project.objects.all()
-    # params = {
-    #     'project':project,
-        
-    # }
-    print('hbhedfhkdjhuhsufhrkjh')
     projects =Project.objects.all()
-    print("projects are:" + projects)
-    return render (request, 'index.html', {'projects':projects})
+    context = {
+        'projects': projects
+    }
+    return render(request, 'index.html', context)
     
+
+def profile(request):
+    return render(request, 'profile.html')
+
 
 class ProjectListView(ListView):
     model = Project
@@ -44,20 +41,31 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
 
 
 
-class ProjectUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = Project
-    fields = ['title', 'photo', 'description', 'link']
+def ProjectUpdateView(request, LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.user = current_user
+            project.save()
+        return redirect ('/')
+    else:
+        form = ProjectForm()
+    context = {
+        'form':form,
+    }
+    return render(request, 'sites/project_form.html', context)
 
+    # def form_valid(self, form):
+    #     form.instance.author = self.request.user
+    #     return super().form_valid(form)
 
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-    def test_func(self):
-        project = self.get_object()
-        if self.request.user == project.author:
-            return True
-        return False
+    # def test_func(self):
+    #     project = self.get_object()
+    #     if self.request.user == project.author:
+    #         return True
+    #     return False
 
 class ProjectDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Project
