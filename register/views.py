@@ -19,7 +19,7 @@ def register(response):
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(request.POST, request.FILES, isinstance=request.user.profile)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
 
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
@@ -28,7 +28,7 @@ def profile(request):
             return redirect('profile')
     else:
         u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileUpdateForm(isinstance=request.user.profile)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
 
 
     context = {

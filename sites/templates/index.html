@@ -1,23 +1,30 @@
 {%extends 'base.html'%}
 {%block content%}
 {{block.super}}
-
 <div class="container">
-
-    {%for project in projects %}
-    <div class="row">
-        <article class="media content-section">
-            <img class="rounded-circle article-img" src="{{project.user.profile.image}}">
-            <div class="media-body">
-                <div class="article-metadata">
-                    <a class="mr-2" href="#">{{project.user}}</a>
-                    <small class="text-muted">{{project.date_posted|date:"F d, Y"}}</small>
-                </div>
-                <h2> <a class="article-title" href="{%url 'project-detail.html' project.id%}">{{project.link}}</a></h2>
-                <p class="article-content">{{project.description}}</p>
-            </div>
-        </article>
-    </div>
-    {%endfor%}
+    {% for project in projects %}
+    <h1>{{project.title}}</h1>
+    <img src="{{project.photo.url}}" class="img-responsive" alt="project image">
+    <p>{{project.description}}</p>
+    {% empty %}
+    <p>You have not posted any projects yet</p>
+    {% endfor %}
 </div>
 {%endblock%}
+
+
+{%for project in projects %}
+<div class="row">
+    <article class="media content-section">
+        <img class="rounded-circle article-img" src="{{project.user.profile.image}}">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{project.user}}</a>
+                <small class="text-muted">{{project.date_posted|date:"F d, Y"}}</small>
+            </div>
+            <h2> <a class="article-title" href="{%url 'project-detail.html' project.id%}">{{project.link}}</a></h2>
+            <p class="article-content">{{project.description}}</p>
+        </div>
+    </article>
+</div>
+{%endfor%}
