@@ -26,6 +26,7 @@ ProjectListView, ProjectDetailView, ProjectCreateView, ProjectUpdateView, Projec
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', ProjectListView.as_view(), name='index'),
+    path('', views.index, name="index"),
     path('project/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
     path('project/new', ProjectCreateView.as_view(), name='project-create'),
     path('project/<int:pk>/update', ProjectUpdateView.as_view(), name='project-update'),

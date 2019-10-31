@@ -18,7 +18,7 @@ def index(request):
     # }
     print('hbhedfhkdjhuhsufhrkjh')
     projects =Project.objects.all()
-    print(projects)
+    print("projects are:" + projects)
     return render (request, 'index.html', {'projects':projects})
     
 
