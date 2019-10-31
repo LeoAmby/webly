@@ -19,7 +19,9 @@
                 {%if authenticated%}
                 <a href="{%url 'login'%}">REGISTER | LOGIN</a>      
                 {%else%}
-                <a href="{%url 'profile'%}">PROFILE | LOGOUT</a>
+                <a href="{%url 'profile'%}">PROFILE |</a>
+                <a href="{%url 'index'%}"> LOGOUT</a>
+
                 {%endif%}
                 <a href="{%url 'project-create'%}"><span class="submit">SUBMIT YOUR SITE</span></a></div>
         </div>
